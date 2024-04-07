@@ -1,0 +1,86 @@
+DROP DATABASE IF EXISTS jq_grid_test;
+CREATE DATABASE jq_grid_test;
+USE jq_grid_test;
+
+CREATE TABLE test_data(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    test_name CHAR(100) NOT NULL,
+    test_email CHAR(100) NOT NULL,
+    test_date DATE NOT NULL
+);
+
+
+INSERT INTO test_data
+SET test_name = "test1입니다",
+test_email = "test1@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test2입니다",
+test_email = "test2@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test3입니다",
+test_email = "test3@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test4입니다",
+test_email = "test4@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test5입니다",
+test_email = "test5@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test6입니다",
+test_email = "test6@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test7입니다",
+test_email = "test7@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test8입니다",
+test_email = "test8@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test9입니다",
+test_email = "test9@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test10입니다",
+test_email = "test10@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test11입니다",
+test_email = "test11@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test12입니다",
+test_email = "test12@naver.com",
+test_date = NOW();
+
+INSERT INTO test_data
+SET test_name = "test13입니다",
+test_email = "test13@naver.com",
+test_date = NOW();
+
+SELECT * FROM test_data;
+# totalCnt, totaPage를 반환
+SELECT COUNT(*) totalCnt, CEIL(COUNT(*)/5) totalPage FROM test_data;
+
+## row랑, page를 넘겨주면 자동으로 해당 페이지 만큼 리턴
+SELECT aa.*
+FROM(SELECT a.*,@rownum:=@rownum+1 AS rnum, FLOOR((@rownum -1)/10+1) pageNumber
+FROM( SELECT @rownum := 0 )b , (SELECT * FROM test_data ORDER BY id ASC)a)aa
+WHERE aa.pageNumber = 1 ORDER BY aa.rnum;
