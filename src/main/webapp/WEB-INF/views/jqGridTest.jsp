@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta id="_csrf" name="_csrf" content="${_csrf.token }" />
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName }" />
 <title>Insert title here</title>
 
 
@@ -88,6 +90,17 @@
 		    caption: "학교/단체 목록"
 		}); */
 		//----------------------------------------------------------------------------------------------------------------------
+		
+		
+		
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		console.log("token : " + token);
+		console.log("header : " + header);
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(header, token);
+		})
 
 		//페이징을 사용하고 서버에 요청하는 경우-----------------------------------------------------------------------------------
 		$(function() {
