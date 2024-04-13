@@ -1,6 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +10,15 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <meta charset="UTF-8">
+
+<meta id="_csrf" name="_csrf" content="${_csrf.token }" />
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName }" />
 <title>Insert title here</title>
 </head>
 <body>
 
 
-<form method="post" action="/mainPage" >
+<form method="post" action="/doJoin" >
 	<div class="flex justify-center h-screen w-1/3 flex-col m-0 m-auto">
 		<!-- 로그인 창 화면 중앙 우치 -->
 		<div class="border-solid border border-black">
@@ -24,17 +26,17 @@
 			<div class="text-center m-7 ">
 				<!-- 로그인 메인 문구 위치, 마진값 -->
 				<div class="text-lg font-bold">지출관리 웹</div>
-				<div class="text-2xl font-bold">로그인</div>
+				<div class="text-2xl font-bold">회원가입</div>
 			</div>
 			<div class="text-center mx-3 mt-14 ">
 				<!-- input box정중앙 위치, 좌우 마진, 위쪽 마진 -->
 				<p>
-					<input type="text" name="loginId" id="loginId" placeholder="아이디"
+					<input type="email" name="email" id="email" placeholder="이메일"
 						class="login_input m-2" />
 				</p>
 				<div id="validNoId" class="validError"></div>
 				<p>
-					<input type="password" name="loginPw" id="loginPw"
+					<input type="password" name="password" id="password"
 						placeholder="비밀번호" class="login_input m-2">
 				</p>
 				<div id="validNoPw" class="validError"></div>
@@ -50,20 +52,22 @@
 			</div>
 			<div class="text-center">
 				<button type="submit" class="btn btn-outline-primary login_btn"
-					id="try-login">로그인</button>
+					id="try-login">회원가입</button>
 			</div>
 			<div class="text-center my-9">
 				<span class="login_copy">&copy;seonghun.</span>
 			</div>
 		</div>
 	</div>
+	
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 </form>
 
 
-	<script type="text/javascript">
-		
-	</script>
+<script type="text/javascript">
+
+</script>
 
 
 </body>

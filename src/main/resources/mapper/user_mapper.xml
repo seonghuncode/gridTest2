@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ysh.jqGri.repository.UserRepository">
+
+	
+	<insert id="doJoin" parameterType="com.ysh.jqGri.dto.UserDto">
+		insert into `user`
+		set email = #{email},
+		`password` = #{password},
+		enabled = true,
+		`role` = "ROLE_MEMBER"
+	</insert>
+
+</mapper>
